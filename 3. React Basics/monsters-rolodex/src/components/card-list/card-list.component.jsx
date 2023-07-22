@@ -10,13 +10,7 @@ class CardList extends Component {
 
         return (
             <div className='card-list'>
-                {monsters.map(
-                    monster => {
-                        const { name, email, id } = monster;
-
-                        return <Card key={id} name={name} email={email} id={id} />;
-                    }
-                )}
+                {monsters.map( monster => <Card key={monster.id} monster={monster} /> )}
             </div>
         );
     }

@@ -42,7 +42,18 @@ const SignInForm = () => {
             const response = await signInAuthUserWithEmailAndPassword(email, password);
             console.log(response);
             resetFormFields();
-        } catch (error) {}
+        } catch (error) {
+            switch (error.code) {
+                case 'auth/wrong-password':
+                    alert('incorrect password for email');
+                    break;
+                case 'auth/user-not-found':
+                    alert('no user associated with this email');
+                    break;
+                default:
+                    console.log(error);
+            }
+        }
     }
 
     const handleChange = (event) => {
@@ -65,8 +76,8 @@ const SignInForm = () => {
                 <FormInput label="Password" type="password" required onChange={handleChange} name="password" value={password} autoComplete='off'/>
                 <div className="buttons-container">
                     <Button buttonType="" type="submit">Sign In</Button>
-                    <Button buttonType="google" onClick={handleSignInWithGooglePopup}>Popup</Button>
-                    <Button buttonType="google" onClick={signInWithGoogleRedirect}>Redirect</Button>
+                    <Button buttonType="google" type="button" onClick={handleSignInWithGooglePopup}>Popup</Button>
+                    <Button buttonType="google" type="button" onClick={signInWithGoogleRedirect}>Redirect</Button>
                 </div>
             </form>
         </div>

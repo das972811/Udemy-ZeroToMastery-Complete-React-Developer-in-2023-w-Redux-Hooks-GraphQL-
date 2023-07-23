@@ -1,7 +1,6 @@
 import './form-input.styles.scss';
 
 const FormInput = ({ label, ...otherProps }) => {
-    console.log(otherProps);
     return (
         <div className="group">
             <input className="form-input" {...otherProps} />

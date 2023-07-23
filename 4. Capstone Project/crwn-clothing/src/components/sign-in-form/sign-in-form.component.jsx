@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
-
 import { getRedirectResult } from 'firebase/auth';
-
 
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 
 import {
     auth,
+    signInAuthUserWithEmailAndPassword,
     signInWithGooglePopup,
     signInWithGoogleRedirect,
     createUserDocumentFromAuth,
@@ -40,6 +39,8 @@ const SignInForm = () => {
         event.preventDefault();
 
         try {
+            const response = await signInAuthUserWithEmailAndPassword(email, password);
+            console.log(response);
             resetFormFields();
         } catch (error) {}
     }
@@ -56,15 +57,17 @@ const SignInForm = () => {
     };
 
     return (
-        <div className='sign-in-container'>
+        <div className="sign-in-container">
             <h2>Already have an account</h2>
             <span>Sign in with your email and password</span>
             <form onSubmit={handleSubmit}>
                 <FormInput label="Email" type="email" required onChange={handleChange} name="email" value={email} />
                 <FormInput label="Password" type="password" required onChange={handleChange} name="password" value={password} autoComplete='off'/>
-                <Button buttonType="" type="submit">Sign In with email & password</Button>
-                <Button buttonType="google" onClick={handleSignInWithGooglePopup}>Sign In with Google Popup</Button>
-                <Button buttonType="google" onClick={signInWithGoogleRedirect}>Sign In with Google Redirect</Button>
+                <div className="buttons-container">
+                    <Button buttonType="" type="submit">Sign In</Button>
+                    <Button buttonType="google" onClick={handleSignInWithGooglePopup}>Popup</Button>
+                    <Button buttonType="google" onClick={signInWithGoogleRedirect}>Redirect</Button>
+                </div>
             </form>
         </div>
     );

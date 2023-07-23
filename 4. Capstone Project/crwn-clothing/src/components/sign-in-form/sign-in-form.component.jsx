@@ -50,9 +50,7 @@ const SignInForm = () => {
         setFormFields({ ...formFields, [name]: value });
     }
 
-
-
-    const signInWithGooglePopupHandler = async () => {
+    const handleSignInWithGooglePopup = async () => {
         const { user } = await signInWithGooglePopup();
         await createUserDocumentFromAuth(user);
     };
@@ -65,7 +63,7 @@ const SignInForm = () => {
                 <FormInput label="Email" type="email" required onChange={handleChange} name="email" value={email} />
                 <FormInput label="Password" type="password" required onChange={handleChange} name="password" value={password} autoComplete='off'/>
                 <Button buttonType="" type="submit">Sign In with email & password</Button>
-                <Button buttonType="google" onClick={signInWithGooglePopupHandler}>Sign In with Google Popup</Button>
+                <Button buttonType="google" onClick={handleSignInWithGooglePopup}>Sign In with Google Popup</Button>
                 <Button buttonType="google" onClick={signInWithGoogleRedirect}>Sign In with Google Redirect</Button>
             </form>
         </div>

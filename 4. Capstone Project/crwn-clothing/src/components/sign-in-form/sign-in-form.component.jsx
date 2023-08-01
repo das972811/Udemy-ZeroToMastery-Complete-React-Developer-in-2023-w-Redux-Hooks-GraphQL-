@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getRedirectResult } from 'firebase/auth';
 
 import FormInput from '../form-input/form-input.component';
-import Button from '../button/button.component';
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
 import {
     auth,
@@ -74,9 +74,9 @@ const SignInForm = () => {
                 <FormInput label="Email" type="email" required onChange={handleChange} name="email" value={email} />
                 <FormInput label="Password" type="password" required onChange={handleChange} name="password" value={password} autoComplete='off'/>
                 <div className="buttons-container">
-                    <Button buttonType="" type="submit">Sign In</Button>
-                    <Button buttonType="google" type="button" onClick={handleSignInWithGooglePopup}>Popup</Button>
-                    <Button buttonType="google" type="button" onClick={signInWithGoogleRedirect}>Redirect</Button>
+                    <Button type="submit">Sign In</Button>
+                    <Button buttonType={BUTTON_TYPE_CLASSES.google} type="button" onClick={handleSignInWithGooglePopup}>Popup</Button>
+                    <Button buttonType={BUTTON_TYPE_CLASSES.google} type="button" onClick={signInWithGoogleRedirect}>Redirect</Button>
                 </div>
             </form>
         </div>
